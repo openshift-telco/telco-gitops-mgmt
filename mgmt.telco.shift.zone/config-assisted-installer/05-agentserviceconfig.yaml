@@ -23,14 +23,14 @@ spec:
     - ReadWriteOnce
     resources:
       requests:
-        storage: 15Gi
+        storage: 18Gi
   filesystemStorage:
     # storageClassName: lso-filesystemclass
     accessModes:
     - ReadWriteOnce
     resources:
       requests:
-        storage: 15Gi
+        storage: 18Gi
   osImages:
     - openshiftVersion: "4.6"
       version: "46.82.202012051820-0"
