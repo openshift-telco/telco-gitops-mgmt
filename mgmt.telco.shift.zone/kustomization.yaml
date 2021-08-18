@@ -37,6 +37,3 @@ bases:
 resources:
   - 01-master-create-lvs-for-lso.yaml
   - 02-lso-localvolume-lvs.yaml
-
-# patchesStrategicMerge:
-#   - 03-lso-filesystemclass-default.yaml

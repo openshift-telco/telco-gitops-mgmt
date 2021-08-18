@@ -51,6 +51,14 @@ error: unable to recognize ".": no matches for kind "MultiClusterHub" in version
 - Ignore the "no matches for kind '...<a_kind_here>...' " errors. The reason for these is that the Operators are installing but the deployment has not compelted by the time it tries to configure the CRs in the first run.
   - Once the Operators are installed rerun the `oc apply -k .`
 - Disconnection for the ingressVIP and apiVIP might be experienced as the configuration is modifying the corresponding operator configuration. There is a rolling update that is also kickstarted by any MCO configuration update applied to nodes. After few minutes the base configuration should be completed
+- (optional) Set a default storageclass
+
+    ```bash
+    # set lso-filesystemclass as default
+    oc patch storageclass lso-filesystemclass \
+    -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
+    ```
+
 - Create secret from pull-secret for Assisted Installer Operator
 
     ```bash
