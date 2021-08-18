@@ -26,16 +26,29 @@ oc apply -k $TELCO_MGMT_PATH
 $ oc whoami --show-server
 https://api.mgmt.telco.shift.zone:6443
 
+# label all nodes for LSO
+$ oc label node -l kubernetes.io/os=linux ran.openshift.io/lso=''
+node/m0 labeled
+node/m1 labeled
+node/m2 labeled
+
+# apply role to 
 $ oc apply -k .
-namespace/openshift-gitops-operator created
-namespace/openshift-local-storage created
+namespace/assisted-installer configured
+namespace/open-cluster-management created
+namespace/openshift-local-storage configured
+namespace/openshift-serverless configured
+namespace/telco-gitops configured
+serviceaccount/cli-job-sa configured
+clusterrole.rbac.authorization.k8s.io/cli-job-sa-role configured
+clusterrole.rbac.authorization.k8s.io/telco-gitops-custom-role configured
+clusterrolebinding.rbac.authorization.k8s.io/cli-job-sa-rolebinding configured
 clusterrolebinding.rbac.authorization.k8s.io/cluster-admin-group created
-clusterrolebinding.rbac.authorization.k8s.io/cluster-admin-telcoadmin created
 ...<snip>...
-error: unable to recognize ".": no matches for kind <snip>
+error: unable to recognize ".": no matches for kind "MultiClusterHub" in version "operator.open-cluster-management.io/v1"
 ```
 
-- Ignore the "no matches for kind '...<snip>...' " errors. The reason for these is that the Operators are installing but the deployment has not compelted by the time it tries to configure the CRs in the first run.
+- Ignore the "no matches for kind '...<a_kind_here>...' " errors. The reason for these is that the Operators are installing but the deployment has not compelted by the time it tries to configure the CRs in the first run.
   - Once the Operators are installed rerun the `oc apply -k .`
 - Disconnection for the ingressVIP and apiVIP might be experienced as the configuration is modifying the corresponding operator configuration. There is a rolling update that is also kickstarted by any MCO configuration update applied to nodes. After few minutes the base configuration should be completed
 - Create secret from pull-secret for Assisted Installer Operator
