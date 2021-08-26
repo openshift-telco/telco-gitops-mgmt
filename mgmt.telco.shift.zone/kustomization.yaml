@@ -20,9 +20,9 @@ bases:
   # Operators for MGMT Clusters
   - github.com/openshift-telco/telco-gitops/blueprints/mgmt?ref=main
   # Hive
-  # - github.com/openshift-telco/telco-gitops/base/operators/hive
+  - github.com/openshift-telco/telco-gitops/base/operators/hive
   # Red Hat Advanced Cluster Manager for Kubernetes
-  - github.com/openshift-telco/telco-gitops/base/operators/advanced-cluster-management?ref=main
+  # - github.com/openshift-telco/telco-gitops/base/operators/advanced-cluster-management?ref=main
   # OpenShift Container storage
   # - github.com/openshift-telco/telco-gitops/base/operators/openshift-container-storage?ref=main
   # OpenShiftVirt
