@@ -11,7 +11,7 @@ These method are the only methods that deploy and configure the `cluster-baremet
 
 ##
 
-One the cluster is deployed using one of the valid deployment methods for Telco Management Clusters
+On the cluster is deployed using one of the valid deployment methods for Telco Management Clusters, this cluster has one or many additional disks on the worker nodes (for example vdb in this case) in order to install Local Storage Operator.
 
 ```bash
 export KUBECONFIG="~/path/to/kubeconfig-telco-mgmt"
