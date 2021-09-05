@@ -17,7 +17,9 @@ commonAnnotations:
 bases:
   # Common Operators
   - github.com/openshift-telco/telco-gitops/base/configs/all-common?ref=main
-  # Operators for MGMT Clusters
+  # Include IDP htpasswd example
+  - github.com/openshift-telco/telco-gitops/base/configs/idp-htpasswd?ref=main
+  # Import blueprint cluster definitions for MGMT Clusters
   - github.com/openshift-telco/telco-gitops/blueprints/mgmt?ref=main
   # Hive
   - github.com/openshift-telco/telco-gitops/base/operators/hive
