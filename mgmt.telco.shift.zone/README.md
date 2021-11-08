@@ -11,7 +11,7 @@ These method are the only methods that deploy and configure the `cluster-baremet
 
 ##
 
-On the cluster is deployed using one of the valid deployment methods for Telco Management Clusters, this cluster has one or many additional disks on the worker nodes (for example vdb in this case) in order to install Local Storage Operator.
+On the cluster is deployed using one of the valid deployment methods for Telco Management Clusters, this cluster has one or many additional disks on the worker nodes (for example 100G vdb in this case) in order to install Local Storage Operator.
 
 ```bash
 export KUBECONFIG="~/path/to/kubeconfig-telco-mgmt"
@@ -74,7 +74,7 @@ error: unable to recognize ".": no matches for kind "MultiClusterHub" in version
 - To obtain the password for `telco-gitops` ArgoCD `admin`
   
     ```bash
-    oc get secret telco-gitops-cluster -o go-template='{{index .data "admin.password"}}' | base64 -d
+    oc get secret telco-gitops-cluster -n telco-gitops -o go-template='{{index .data "admin.password"}}' | base64 -d
     ```
 
 ## Define a cluster for ArgoCD
@@ -92,7 +92,9 @@ curl -L -o argocd https://github.com/argoproj/argo-cd/releases/download/v2.0.5/a
 - Login into the ArgoCD instance in the management cluster using ArgoCD CLI. You will be prompted for the ArgoCD `admin` password.
 
     ```bash
-    argocd login https://api.mgmt.telco.shift.zone:6443 --name admin
+    # First get the route for the argocd app
+    oc get route -n telco-gitops
+    argocd login {ROUTE FROM ABOVE} --name admin
     ```
 
 - List clusters
